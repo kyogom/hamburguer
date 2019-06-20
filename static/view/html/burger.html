@@ -1,0 +1,53 @@
+<html>
+
+<head>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.10/dist/vue.js"></script>
+    <script>
+        window.onload = function () {
+            var demo = new Vue({
+                el: '#demo',
+                data: {
+                    photoHeights : [55,100,55,55,55,55]
+                },
+                methods: {
+                    calculatePosition(idx) {
+                        let position = 0;
+                        for(let i = 0; i <= idx; i++){
+                            position += this.photoHeights[i];
+                        }
+                        return position;
+                    }
+                }
+            });
+        };
+    </script>
+    <style type="text/css">
+        .burger-component {
+            height: 55px;
+            text-align: center;
+        }
+
+        .sticky {
+            position: sticky;
+        }
+
+        .content-wrapper {
+            height: 800px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="demo">
+        <div v-for="idx in [0,1,2,3,4,5]" style="display: inline;">
+            <div class="burger-component sticky" :style="{ top : calculatePosition(idx) + 'px'}">
+                <img :src="'../../../assets/images/' + idx + '.jpg'">
+            </div>
+            <div class="content-wrapper">
+            </div>
+        </div>
+    </div>
+
+</body>
+
+</html>
